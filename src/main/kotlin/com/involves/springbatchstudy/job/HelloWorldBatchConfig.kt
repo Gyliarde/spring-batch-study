@@ -1,4 +1,4 @@
-package com.involves.springbatchstudy
+package com.involves.springbatchstudy.job
 
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
@@ -16,7 +16,7 @@ import org.springframework.transaction.PlatformTransactionManager
 
 
 @Configuration
-class BatchConfig {
+class HelloWorldBatchConfig {
 
     /*
     * Each Job is executed only
@@ -32,18 +32,4 @@ class BatchConfig {
             .incrementer(RunIdIncrementer())
             .build()
 
-    @Bean
-    fun step(jobRepository: JobRepository, transactionManager: PlatformTransactionManager): Step =
-        StepBuilder("hello", jobRepository)
-            .tasklet(printHello(null), transactionManager)
-            .build()
-
-    @Bean
-    @StepScope
-    fun printHello(@Value("#{jobParameters['name']}") name: String?): Tasklet {
-        return Tasklet { _, _ ->
-            println("Hi $name")
-            RepeatStatus.FINISHED
-        }
-    }
 }

@@ -16,7 +16,10 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-batch")
+    implementation("org.springframework.boot:spring-boot-starter-batch") {
+        exclude("org.springframework.boot", "spring-boot-starter-logging")
+    }
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
